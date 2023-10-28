@@ -1,0 +1,14 @@
+{
+    "app":{
+        "port":5001,
+        "x_api_key" : "OdojQon8zL01DnsLfJq5IDsTZ5KLbdQcVOkEuWFlRM4"
+    },
+    "database":{
+         "host":"localhost",
+         "user":"root",
+         "password":"2121",
+         "db_name":"meghplat",
+         "dialect": "mysql"
+    }
+
+}
