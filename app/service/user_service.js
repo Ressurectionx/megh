@@ -87,11 +87,11 @@ exports.getSchemeService = async (username) => {
 
 
     const enrolledSchemes = enrolledScheme.map((scheme) => {
-        return { schemeName: scheme[0], totalPrice: scheme[1], type: scheme[2] };
+        return { SchemeName: scheme[0], TotalPrice: scheme[1], Type: scheme[2] };
     });
 
     const availableSchemes = availableScheme.map((scheme) => {
-        return { schemeName: scheme[0], totalPrice: scheme[1], type: scheme[2] };
+        return { SchemeName: scheme[0], TotalPrice: scheme[1], Type: scheme[2] };
     });
 
         if (enrolledScheme) {
