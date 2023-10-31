@@ -98,7 +98,7 @@ exports.getSchemeService = async (username) => {
             return {
                 status: 200,
                 message: "Data Found",
-                data: { "enrolledScheme": enrolledSchemes, "availableSchemes": availableSchemes }
+                data: { "enrolledScheme": enrolledSchemes, "availableScheme": availableSchemes }
             }
         }
         return {
