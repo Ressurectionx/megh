@@ -28,7 +28,7 @@ exports.loginService = async (username, password) => {
         const [username, password] = user;
         userData = {
             Name: username,
-            password: password
+            Password: password
         };
     }
     if (!user || user[1] !== password.toString()) {
