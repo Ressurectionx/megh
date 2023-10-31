@@ -1,0 +1,21 @@
+{
+    "app":{
+        "port":5001,
+        "x_api_key" : "OdojQon8zL01DnsLfJq5IDsTZ5KLbdQcVOkEuWFlRM4"
+    },
+    "database":{
+         "host":"localhost",
+         "user":"root",
+         "password":"2121",
+         "db_name":"meghplat",
+         "dialect": "mysql"
+    },
+    "credentials":{
+       "google_key" :"AIzaSyCebfm4YDwfDQXxCyzZwwir38twYiJbujY",
+       "login_sheet_id":"1sgYw2HVXryX29OP6dqmkqdk-9j3NfuQycJ0-RsNHIQA",
+       "scheme_details_id":"1q5wJ98MbTmrs8WSiv2DHqBYR7S1vaDFrYKIk9eJRZ6c",
+       "user_scheme_id":"1WjtienWENsFi_Q2Jnb_5r4Bt9QetPBloPeYP74LBgHQ"
+
+    }
+
+}
