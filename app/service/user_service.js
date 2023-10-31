@@ -1,6 +1,6 @@
-const XLSX = require('xlsx');
-const path = require('path');
+
 const { google } = require('googleapis');
+const config = require('config');
 
 
 
@@ -8,16 +8,16 @@ const { google } = require('googleapis');
 exports.loginService = async (username, password) => {
     const sheets = google.sheets({
         version: 'v4',
-        auth: "AIzaSyCebfm4YDwfDQXxCyzZwwir38twYiJbujY",
+        auth: config.credentials.google_key,
     });
 
-    const spreadsheetId = '1sgYw2HVXryX29OP6dqmkqdk-9j3NfuQycJ0-RsNHIQA';
+    const loginSheetId = config.credentials.login_sheet_id;
     const range = 'userdetails!A:B';  // Specify the sheet and range you want to read
 
     // Get the spreadsheet data.
     const response = await sheets.spreadsheets.values.get({
-        spreadsheetId,
-        range
+        spreadsheetId: loginSheetId,
+        range: range
     });
 
     const values = response.data.values;
@@ -46,13 +46,13 @@ exports.getSchemeService = async (username) => {
 
     const sheets = google.sheets({
         version: 'v4',
-        auth: "AIzaSyCebfm4YDwfDQXxCyzZwwir38twYiJbujY",
+        auth: config.credentials.google_key,
     });
 
-    const schemeDetailsId = '1q5wJ98MbTmrs8WSiv2DHqBYR7S1vaDFrYKIk9eJRZ6c';
-    const schemeDetailsRange = 'scheme_details!A:B';
+    const schemeDetailsId = config.credentials.scheme_details_id;
+    const schemeDetailsRange = 'scheme_details!A:C';
 
-    const userSchemeId = '1WjtienWENsFi_Q2Jnb_5r4Bt9QetPBloPeYP74LBgHQ';
+    const userSchemeId = config.credentials.user_scheme_id;
     const userSchemeRange = 'user_scheme!A:B';
 
     // Get the spreadsheet data.
@@ -78,11 +78,19 @@ exports.getSchemeService = async (username) => {
 
 
 
+    const enrolledSchemes = enrolledScheme.map((scheme) => {
+        return { schemeName: scheme[0], totalPrice: scheme[1], type: scheme[2] };
+    });
+
+    const availableSchemes = availableScheme.map((scheme) => {
+        return { schemeName: scheme[0], totalPrice: scheme[1], type: scheme[2] };
+    });
+
         if (enrolledScheme) {
             return {
                 status: 200,
                 message: "Data Found",
-                data: { "enrolledScheme": enrolledScheme, "availableScheme": availableScheme }
+                data: { "enrolledSchemes": enrolledSchemes, "availableSchemes": availableSchemes }
             }
         }
         return {
@@ -90,7 +98,6 @@ exports.getSchemeService = async (username) => {
             message: "Data Not Found",
             data: null
         }
-
 }
 
 
