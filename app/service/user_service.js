@@ -22,7 +22,15 @@ exports.loginService = async (username, password) => {
 
     const values = response.data.values;
     const user = values.find((dataSnapShot) => dataSnapShot[0] === username);
+    let userData = {};
 
+    if (user) {
+        const [username, password] = user;
+        userData = {
+            username: username,
+            password: password
+        };
+    }
     if (!user || user[1] !== password.toString()) {
         return {
             "status": user ? 401 : 404,
@@ -34,7 +42,7 @@ exports.loginService = async (username, password) => {
     return {
         "status": 200,
         "message": "Login successful",
-        "data": user
+        "data": userData
     };
 };
 
@@ -90,7 +98,7 @@ exports.getSchemeService = async (username) => {
             return {
                 status: 200,
                 message: "Data Found",
-                data: { "enrolledSchemes": enrolledSchemes, "availableSchemes": availableSchemes }
+                data: { "enrolledScheme": enrolledSchemes, "availableSchemes": availableSchemes }
             }
         }
         return {
